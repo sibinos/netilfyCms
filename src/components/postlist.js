@@ -9,7 +9,9 @@ const PostList = () => {
     const excerptList = postlist.map(post => {
         return post.content.split(" ").slice(0, 20).join(" ") + "..."
     })
+    console.log(postlist)
     return (
+
         <div className="postlist">
             <h1 className="title">All Posts</h1>
             {postlist.length && 
