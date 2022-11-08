@@ -1,6 +1,8 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 import Markdown from "react-markdown"
+import Layout from "../components/layout"
+
 import postlist from "../posts.json"
 import "./pages.css"
 
@@ -25,12 +27,16 @@ const Post = (props) => {
         return <Redirect to="/404" />
     }
     return (
+        <Layout>
+
             <div className="post">
                 <h2>{fetchedPost.title}</h2>
                 <small>Published on {fetchedPost.date} by {fetchedPost.author}</small>
                 <hr/>
                 <Markdown source={fetchedPost.content} escapeHtml={false} />
             </div>
+            </Layout>
+
         
     )
 }
