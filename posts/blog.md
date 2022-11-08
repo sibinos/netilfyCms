@@ -1,6 +1,6 @@
 ---
 title: blog
-author: arun
+author: anil
 date: 2022-11-08T04:15:39.552Z
 thumbnail: /images/screen-shot-2022-10-21-at-1.49.20-pm.png
 ---
