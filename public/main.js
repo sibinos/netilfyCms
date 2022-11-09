@@ -5,7 +5,7 @@ const dirPath = path.join(__dirname, "../posts")
 const dirPathPages = path.join(__dirname, "../src/pages/content")
 let postlist = []
 let pagelist = []
-
+console.log("********************");
 const months = {
     "01": "January",
     "02": "February",
