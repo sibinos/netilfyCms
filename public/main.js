@@ -38,9 +38,11 @@ const formatDate = (date) => {
 
 const getPosts = () => {
     fs.readdir(dirPath, (err, files) => {
+
         if (err) {
             return console.log("Failed to list contents of directory: " + err)
         }
+        console.log(files)
         let ilist = []
         files.forEach((file, i) => {
             let obj = {}
