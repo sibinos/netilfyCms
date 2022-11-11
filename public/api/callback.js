@@ -1,6 +1,6 @@
 import { AuthorizationCode } from "simple-oauth2";
 import { config } from "../lib/config";
-
+console.log("****")
 export default async (req, res) => {
   const { host } = req.headers;
   const url = new URL(`https://${host}/${req.url}`);
