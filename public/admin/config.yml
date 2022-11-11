@@ -5,6 +5,8 @@ backend:
   base_url: "https://netilfy-cms.vercel.app" # CHANGE ME
   auth_endpoint: "api/auth"
 
+local_backend: true
+
 # These lines should *not* be indented
 media_folder: "public/images" 
 public_folder: "/images" 
