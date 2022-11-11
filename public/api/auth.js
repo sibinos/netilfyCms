@@ -8,6 +8,7 @@ export default async (req, res) => {
   const { host } = req.headers;
   const url = new URL(`https://${host}/${req.url}`);
   const urlParams = url.searchParams;
+  console.log(urlParams);
   const provider = urlParams.get("provider");
 
   // simple-oauth will use our config files to generate a client we can use to request access
