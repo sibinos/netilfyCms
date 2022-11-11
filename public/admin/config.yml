@@ -1,25 +1,19 @@
 backend:
-  name: github
-  repo: sibinos/netilfyCms
-  branch: master
-  base_url: "https://netilfy-cms.vercel.app/admin/#/" # CHANGE ME
-  auth_endpoint: "api/auth"
-
-local_backend: true
-
-# These lines should *not* be indented
-media_folder: "public/images" 
-public_folder: "/images" 
-
-collections:
-  - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Blog Posts" # Used in the UI
-    folder: "posts" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Author", name: "author", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+  name: github # our repository provider
+  repo: sibinos/netilfyCms # username/repo
+  branch: master # the main branch of our repo
+  base_url: "https://netilfy-cms.vercel.app" # our site's base URL 
+  auth_endpoint: "api/auth" # used together with base_url for our custom endpoints (more on this later)
+media_folder: "public/images" # the folder we want to upload new images to
+public_folder: "/images" # the folder our images should be fetched from
+collections: # our content types, this is just an example!
+  - name: "pages"
+    label: "Pages"
+    folder: "_posts/pages"
+    create: true
+    slug: "{{title}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
