@@ -2,7 +2,7 @@ backend:
   name: github
   repo: sibinos/netilfyCms
   branch: master
-  base_url: "https://netilfy-cms.vercel.app" # CHANGE ME
+  base_url: "https://netilfy-cms.vercel.app/admin/#/" # CHANGE ME
   auth_endpoint: "api/auth"
 
 local_backend: true
