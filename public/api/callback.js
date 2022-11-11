@@ -1,26 +1,56 @@
-// import { NowRequest, NowResponse } from "@now/node";
-import { create, renderBody } from "./_lib/oauth2";
+import { AuthorizationCode } from "simple-oauth2";
+import { config } from "../../lib/config";
 
 export default async (req, res) => {
-  const code = req.query.code ;
   const { host } = req.headers;
-
-  const oauth2 = create();
+  const url = new URL(`https://${host}/${req.url}`);
+  const urlParams = url.searchParams;
+  const code = urlParams.get("code");
+  const provider = urlParams.get("provider");
+  
+  // we recreate the client we used to make the request
+  const client = new AuthorizationCode(config(provider));
+  
+  // create our token object
+  const tokenParams = {
+    code,
+    redirect_uri: `https://${host}/api/callback?provider=${provider}`
+  };
 
   try {
-    const accessToken = await oauth2.authorizationCode.getToken({
-      code,
-      redirect_uri: `https://${host}/api/callback`
-    });
-    const { token } = oauth2.accessToken.create(accessToken);
+    // try to create an access token from the client
+    const accessToken = await client.getToken(tokenParams);
+    const token = accessToken.token["access_token"];
 
-    res.status(200).send(
-      renderBody("success", {
-        token: token.access_token,
-        provider: "github"
-      })
-    );
+    const responseBody = renderBody("success", {
+      token,
+      provider
+    });
+
+    res.statusCode = 200;
+    res.end(responseBody);
   } catch (e) {
-    res.status(200).send(renderBody("error", e));
+    res.statusCode = 200;
+    res.end(renderBody("error", e));
   }
 };
+
+// This renders a simple page with javascript that allows the pop-up page
+// to communicate with its opener 
+function renderBody(status, content) {
+  return `
+    <script>
+      const receiveMessage = (message) => {
+        window.opener.postMessage(
+          'authorization:${content.provider}:${status}:${JSON.stringify(
+    content
+  )}',
+          message.origin
+        );
+        window.removeEventListener("message", receiveMessage, false);
+      }
+      window.addEventListener("message", receiveMessage, false);
+      window.opener.postMessage("authorizing:${content.provider}", "*");
+    </script>
+  `;
+}
