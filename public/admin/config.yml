@@ -2,7 +2,7 @@ backend:
   name: github # our repository provider
   repo: sibinos/netilfyCms # username/repo
   branch: master # the main branch of our repo
-  base_url: "https://netilfy-cms.vercel.app" # our site's base URL 
+  base_url: "https://netilfy-g4uey8607-sibinos.vercel.app" # our site's base URL 
   auth_endpoint: "api/auth" # used together with base_url for our custom endpoints (more on this later)
 media_folder: "public/images" # the folder we want to upload new images to
 public_folder: "/images" # the folder our images should be fetched from
