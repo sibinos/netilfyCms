@@ -13,11 +13,11 @@ export const create = () =>
     }
   });
 
-// type RenderBody = {
+// type R = {
 //   (status: "success", content: { token: string; provider: "github" }): string;
 //   (status: "error", content: Object): string;
 // };
-export const renderBody = (status, content) => `
+export const renderBody= (status, content) => `
 <script>
   const receiveMessage = (message) => {
     window.opener.postMessage(
