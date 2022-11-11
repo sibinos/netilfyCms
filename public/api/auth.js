@@ -7,6 +7,7 @@ export const randomString = () => randomBytes(4).toString("hex");
 
 export default async (req, res) => {
   const { host } = req.headers;
+  console.log("******");
   const url = new URL(`https://${host}/${req.url}`);
   const urlParams = url.searchParams;
   const provider = urlParams.get("provider");
