@@ -4,6 +4,7 @@ import { config } from "../lib/config";
 import { scopes } from "../lib/scope";
 
 export const randomString = () => randomBytes(4).toString("hex");
+console.log("######");
 export default async (req, res) => {
   const { host } = req.headers;
   const url = new URL(`https://${host}/${req.url}`);
