@@ -20,7 +20,7 @@ const auth = {
 
 const client = {
   github: {
-    id: "Iv1.d691d219bf204f5f",
+    id: Iv1.d691d219bf204f5f,
     secret: "9527157b8b9b66807dc2b25ef3cd643f990255c1"
   }
 };
