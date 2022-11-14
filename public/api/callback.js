@@ -1,12 +1,18 @@
 import { AuthorizationCode } from "simple-oauth2";
 import { config } from "../lib/config";
 
+
+
 export default async (req, res) => {
   const { host } = req.headers;
   const url = new URL(`https://${host}/${req.url}`);
   const urlParams = url.searchParams;
+
   const code = urlParams.get("code");
+  console.log(code);
   const provider = urlParams.get("provider");
+  console.log(provider);
+  
   
   // we recreate the client we used to make the request
   const client = new AuthorizationCode(config(provider));
