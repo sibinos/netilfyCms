@@ -1,6 +1,6 @@
 {
-    "env": {
-      "OAUTH_CLIENT_ID": "d8f581be9af8b0dae8ac",
-      "OAUTH_CLIENT_SECRET":"a20b5a189cf0491d049617297e85ab5d8a236b0a"  
-    }
+  "rewrites": [
+    { "source": "/auth", "destination": "/api/auth.ts" },
+    { "source": "/callback", "destination": "/api/callback.ts"}
+  ]
 }
